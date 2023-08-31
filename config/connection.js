@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { getSecret } = require("./keyvault");
 
 async function putKeyVaultSecretInEnvVar() {
-
+    
     const secretName = process.env.KEY_VAULT_SECRET_NAME_DATABASE_URL;
     const keyVaultName = process.env.KEY_VAULT_NAME;
 
@@ -19,7 +19,7 @@ async function putKeyVaultSecretInEnvVar() {
 
 async function getConnectionInfo() {
   if (!process.env.DATABASE_URL) {
-
+    console.log("No env.DATABASE_URL found checking for vault...");
     await putKeyVaultSecretInEnvVar();
 
     // still don't have a database url?
